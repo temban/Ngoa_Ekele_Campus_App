@@ -1,0 +1,1598 @@
+{
+	"info": {
+		"_postman_id": "0ac6b524-67c0-4d51-b952-951694d5f767",
+		"name": "ngoa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30871413",
+		"_collection_link": "https://lively-resonance-847046.postman.co/workspace/My-Workspace~eafe06da-f32c-4da8-8175-f01794c17ba4/collection/30871413-0ac6b524-67c0-4d51-b952-951694d5f767?action=share&source=collection_link&creator=30871413"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "user sign_up",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Eugen 777777777\",\r\n    \"email\": \"Eugen1@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"phone\": \"+1234567890\",\r\n    \"country\": \"USA\",\r\n    \"town\": \"New York\",\r\n    \"street\": \"123 Main St\",\r\n    \"role\": \"Student\",\r\n    \"level\": \"level_5\",\r\n    \"departmentid\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/sign_up",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"sign_up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/get_users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get_users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/user/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"user",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit user by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userid\": 2,\r\n    \"name\": \"Bidias 6666666666666666666666666\",\r\n    \"email\": \"adiyi@gmail.com\",\r\n    \"phone\": \"+1234567890\",\r\n    \"country\": \"USA\",\r\n    \"town\": \"New York\",\r\n    \"street\": \"123 Main St\",\r\n    \"level\": \"level_2\",\r\n    \"departmentid\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/edit_user/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"edit_user",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit password by user id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"oldPassword\": \"123\",\r\n  \"newPassword\": \"Qwerty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/edit_password/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"edit_password",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change user subscription to active by user id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"subscriptionStatus\": \"Active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/change_subscription/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"change_subscription",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "set_user_status by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"isActive\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/set_user_status/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"set_user_status",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload_profile_picture by user id",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/shint/OneDrive/Images/32ce31bf19188e9f.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/upload_profile_picture/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"upload_profile_picture",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get profile_picture url by user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/profile_picture/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"profile_picture",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_profile_picture by user id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/shint/OneDrive/Images/3d25085d0631d72f.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/update_profile_picture/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update_profile_picture",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_profile_picture by user id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/delete_profile_picture/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"delete_profile_picture",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find users by department id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/users/department/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"department",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find users by level",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/users/level/level_5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"level",
+								"level_5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"Eugen@gmail.com\",\r\n  \"password\": \"123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh_token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/refresh_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"refresh_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_refresh_token",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/delete_refresh_token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"delete_refresh_token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "google_auth",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idToken\": \"70912245721-40neqr6u551m5eg1vreiml0v2sog9cc5.apps.googleusercontent.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/google_auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"google_auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "departments",
+			"item": [
+				{
+					"name": "create_department",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departmentName\":\"Applied Mathematics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/create_department",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"create_department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_departments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/get_departments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get_departments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get department by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/department/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"department",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_departments by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"departmentName\":\"History\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/update_departments/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update_departments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_department by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/delete_department/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"delete_department",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "courses",
+			"item": [
+				{
+					"name": "create course",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"CourseCode\": \"Geo 111\",\r\n        \"CourseName\": \"to Geography\",\r\n        \"Level\": \"level_1\",\r\n        \"DepartmentID\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/create_course",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"create_course"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_courses",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/get_courses",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get_courses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_course by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"CourseCode\": \"Mat 125\",\r\n  \"CourseName\": \"Simultenous eq\",\r\n  \"Level\": \"level_4\",\r\n  \"DepartmentID\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/update_course/11",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update_course",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_course by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/delete_course/13",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"delete_course",
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search_courses by level or departmentid",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/search_courses/level_or_department?departmentid=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"search_courses",
+								"level_or_department"
+							],
+							"query": [
+								{
+									"key": "departmentid",
+									"value": "1"
+								},
+								{
+									"key": "level",
+									"value": "level_4",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "results",
+			"item": [
+				{
+					"name": "create result",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"studentname\": \"John Doe e\",\r\n  \"studentmatr\": \"MAT12345\",\r\n  \"score\": 60,\r\n   \"resultdate\": \"2024-09-26T14:30:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/create_result/courseid/1/examtypeid/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"create_result",
+								"courseid",
+								"1",
+								"examtypeid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload_results on excel by courseid and examtypeid",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/shint/Downloads/Telegram Desktop/TP_GEO3_2020_2021-.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/excel_upload_results/courseid/1/examtypeid/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"excel_upload_results",
+								"courseid",
+								"1",
+								"examtypeid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_result by resultid, courseid and examtypeid",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"studentname\": \"John Doe yung\",\r\n  \"studentmatr\": \"MAT12345yuu\",\r\n  \"score\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/update_result/resultid/1/courseid/1/examtypeid/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update_result",
+								"resultid",
+								"1",
+								"courseid",
+								"1",
+								"examtypeid",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_results",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/get_results",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get_results"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search student result by name",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/search/name/ZYEBANG KAKIANBE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"search",
+								"name",
+								"ZYEBANG KAKIANBE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "search student result by matricule",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/search/matricule/18H122",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"search",
+								"matricule",
+								"18H122"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_result by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/get_result/4807",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get_result",
+								"4807"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_result by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/delete_result/12782",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"delete_result",
+								"12782"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delet_all_results",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/delete_all_results",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"delete_all_results"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "exam types",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/examtypes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"examtypes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upload_temp_result_pdf",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "resultPDF",
+									"type": "file",
+									"src": "/C:/Users/shint/Downloads/Driver license.pdf"
+								},
+								{
+									"key": "StudentName",
+									"value": "Null2",
+									"type": "text"
+								},
+								{
+									"key": "StudentMatr",
+									"value": "Null",
+									"type": "text"
+								},
+								{
+									"key": "Score",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "Total",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "CourseID",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "ExamTypeID",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "ResultDate",
+									"value": "2025-06-26",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/upload_temp_result_pdf",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"upload_temp_result_pdf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get result_pdf by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/result_pdf/12790",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"result_pdf",
+								"12790"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get result_pdfsby date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/result_pdfs/2025-06-2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"result_pdfs",
+								"2025-06-2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_result_pdf and date by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "resultPDF",
+									"type": "file",
+									"src": "/C:/Users/shint/Downloads/Cover letter Temban Awan.pdf"
+								},
+								{
+									"key": "resultDate",
+									"value": "2027-02-10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/update_result_pdf/12793",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update_result_pdf",
+								"12793"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "News Feed",
+			"item": [
+				{
+					"name": "create news feed",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images",
+									"type": "file",
+									"src": [
+										"/C:/Users/shint/OneDrive/Images/collabo.jpg",
+										"/C:/Users/shint/OneDrive/Images/3b25c1695f2ea225.jpg",
+										"/C:/Users/shint/OneDrive/Images/20230610_094044.jpg",
+										"/C:/Users/shint/OneDrive/Images/demon_slayer_2021_07_06_13_23_36.jpg"
+									]
+								},
+								{
+									"key": "NoteTitle",
+									"value": "Testing the Updated Routes",
+									"type": "text"
+								},
+								{
+									"key": "Content",
+									"value": "PUT to /api/newsfeed/{id}: Similarly, use the form-data option to send the new values along with the images. GET to /api/newsfeed and /api/newsfeed/{id} to retrieve news feeds. DELETE to /api/newsfeed/{id} to remove a news feed.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/create_newsfeed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"create_newsfeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_newsfeed",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/get_all_newsfeed",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get_all_newsfeed"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get newsfeed by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/newsfeed/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"newsfeed",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_newsfeed by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/shint/OneDrive/Images/32ce31bf19188e9f.jpg"
+								},
+								{
+									"key": "NoteTitle",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "Content",
+									"value": "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/update_newsfeed/10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update_newsfeed",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete newsfeed by id",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/newsfeed/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"newsfeed",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Course Notes",
+			"item": [
+				{
+					"name": "create course note",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pdf",
+									"type": "file",
+									"src": "/C:/Users/shint/Downloads/Awan CV reviewed.pdf"
+								},
+								{
+									"key": "title",
+									"value": "test test",
+									"type": "text"
+								},
+								{
+									"key": "courseId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/cerate_course_notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"cerate_course_notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_all_course_notes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/get_all_course_notes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"get_all_course_notes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "course_note by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/course_note/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"course_note",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_course_notes by id",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "multipart/form-data",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pdf",
+									"type": "file",
+									"src": "/C:/Users/shint/Downloads/CALENDRIER JOURS DE PAIES 2024 - BLAISE.pdf"
+								},
+								{
+									"key": "title",
+									"value": "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+									"type": "text"
+								},
+								{
+									"key": "courseId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:5000/update_course_notes/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"update_course_notes",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
