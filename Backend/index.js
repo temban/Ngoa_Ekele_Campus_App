@@ -2,6 +2,7 @@ import express, {json} from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import setupSwaggerDocs from "./utils/swagger.js";
 import {dirname,join} from 'path';
 import path from 'path';
 import {fileURLToPath} from 'url';
@@ -24,7 +25,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const corsOptions = {credentials:true, origin: process.env.URL || '*'};
 
-
+setupSwaggerDocs(app);
 app.use(cors(corsOptions));
 app.use(json());
 app.use(cookieParser());
