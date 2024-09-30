@@ -6,7 +6,7 @@ import express from 'express';
 const swaggerDefinition = {
   openapi: '3.0.0',
   info: {
-    title: 'Course Notes API',
+    title: 'InfoStream APIs',
     version: '1.0.0',
     description: 'API documentation for managing course notes with PDF uploads',
   },

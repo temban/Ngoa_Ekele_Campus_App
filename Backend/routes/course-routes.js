@@ -111,5 +111,60 @@ router.get('/search_courses/level_or_department', async (req, res) => {
     }
 });
 
+
+router.post('/create_exam_type', async (req, res) => {
+    const { TypeName } = req.body;
+
+    try {
+        // Insert into the ExamType table
+        const newExamType = await pool.query(
+            'INSERT INTO ExamType (TypeName) VALUES ($1) RETURNING *',
+            [TypeName]
+        );
+
+        res.status(201).json(newExamType.rows[0]);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.get('/examtypes', async (req, res) => {
+    try {
+        // Fetch all exam types from the database
+        const result = await pool.query('SELECT * FROM ExamType');
+
+        // Check if there are any exam types
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: 'No exam types found' });
+        }
+
+        // Send the result as a JSON response
+        res.status(200).json(result.rows);
+    } catch (error) {
+        console.error('Error retrieving exam types:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Get an exam type by ID
+router.get('/examtype/:id', async (req, res) => {
+    const { id } = req.params; // Extract the id from the route parameter
+
+    try {
+        // Fetch exam type by ID from the database
+        const result = await pool.query('SELECT * FROM ExamType WHERE ExamTypeID = $1', [id]);
+
+        // Check if the exam type exists
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: `Exam type with ID ${id} not found` });
+        }
+
+        // Send the result as a JSON response
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error retrieving exam type:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
 // Export the router
 export default router;

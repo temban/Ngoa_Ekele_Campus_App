@@ -12,8 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Setup directories
-const tempDir = path.join(__dirname, 'temp');
-const pdfUploadsDir = path.join(__dirname, 'ResultPDF');
+const tempDir = path.join(__dirname, '..', 'documents', 'temp');
+const pdfUploadsDir = path.join(__dirname, '..', 'documents', 'ResultPDF');
 
 // Create temp directory if it doesn't exist
 if (!fs.existsSync(tempDir)) {
@@ -73,7 +73,6 @@ router.post('/upload_temp_result_pdf', tempUpload.single('resultPDF'), async (re
             CourseID,
             ExamTypeID,
             ResultDate,
-            ExamType // Include the ExamType from the request body
         } = req.body;
 
         // Validate the score, converting empty strings to null
@@ -123,11 +122,19 @@ router.post('/upload_temp_result_pdf', tempUpload.single('resultPDF'), async (re
                 utcResultDate // Include the converted ResultDate
             ];
 
-            const result = await pool.query(insertQuery, values); 
+            const result = await pool.query(insertQuery, values);
+
+            // Debug: Log the entire result object to inspect what is returned
+            console.log('Insert result:', result);
+
+            // Check if the ResultID exists in the returned rows
+            if (result.rows.length === 0 || !result.rows[0].resultid) {
+                return res.status(500).json({ error: 'Result ID not returned' });
+            }
 
             res.status(201).json({
                 message: 'Result PDF uploaded and data inserted successfully',
-                resultID: result.rows[0].ResultID, // Return the newly created Result ID
+                resultID: result.rows[0].resultid, // Return the newly created Result ID (ensure it's lowercase)
                 pdfPath: req.file.filename // Return the path of the uploaded PDF
             });
         } catch (dbError) {
@@ -197,8 +204,6 @@ router.put('/update_result_pdf/:id', tempUpload.single('resultPDF'), async (req,
     });
 });
 
-
-
 // Route to retrieve a result PDF
 router.get('/result_pdf/:id', async (req, res) => {
     const { id } = req.params;
@@ -218,13 +223,12 @@ router.get('/result_pdf/:id', async (req, res) => {
         }
 
         // Send the PDF result URL
-        const pdfUrl = `${req.protocol}://${req.get('host')}/ResultPDF/${pdfFile}`;
+        const pdfUrl = `${req.protocol}://${req.get('host')}/documents/ResultPDF/${pdfFile}`;
         res.json({ pdfUrl });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
-
 
 router.get('/result_pdfs/:date', async (req, res) => {
     const { date } = req.params;
@@ -252,7 +256,7 @@ router.get('/result_pdfs/:date', async (req, res) => {
                 total: row.total,
                 courseID: row.courseid,
                 examTypeID: row.examtypeid,
-                pdfUrl: `${req.protocol}://${req.get('host')}/ResultPDF/${row.pdfresult}`,
+                pdfUrl: `${req.protocol}://${req.get('host')}/documents/ResultPDF/${row.pdfresult}`,
                 resultDate: row.resultdate
             };
         });
@@ -263,7 +267,6 @@ router.get('/result_pdfs/:date', async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 });
-
 
 // Route to upload an Excel sheet and save results
 router.post('/excel_upload_results/courseid/:courseid/examtypeid/:examtypeid', upload.single('file'), async (req, res) => {
@@ -401,6 +404,7 @@ router.post('/create_result/courseid/:courseid/examtypeid/:examtypeid', async (r
         res.status(500).json({ error: error.message });
     }
 });
+
 // Update a result by ID (with ExamTypeID and CourseID passed through the endpoint)
 router.put('/update_result/resultid/:id/courseid/:courseid/examtypeid/:examtypeid', async (req, res) => {
     const { id, courseid, examtypeid } = req.params;
@@ -568,21 +572,4 @@ router.get('/search/matricule/:matricule', async (req, res) => {
     }
 });
 
-router.get('/examtypes', async (req, res) => {
-    try {
-        // Fetch all exam types from the database
-        const result = await pool.query('SELECT * FROM ExamType');
-
-        // Check if there are any exam types
-        if (result.rows.length === 0) {
-            return res.status(404).json({ message: 'No exam types found' });
-        }
-
-        // Send the result as a JSON response
-        res.status(200).json(result.rows);
-    } catch (error) {
-        console.error('Error retrieving exam types:', error);
-        res.status(500).json({ error: error.message });
-    }
-});
 export default router;

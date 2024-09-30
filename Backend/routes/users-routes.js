@@ -13,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Check if the uploads directory exists, if not, create it
-const uploadsDir = path.join(__dirname, 'ProfileImages');
+const uploadsDir = path.join(__dirname, '..', 'documents', 'ProfileImages');
 
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir);
@@ -41,6 +41,12 @@ router.post('/upload_profile_picture/:id', upload.single('profilePicture'), asyn
       return res.status(400).json({ error: 'No file uploaded' });
     }
 
+    const user = await pool.query('SELECT profileimage FROM users WHERE userid = $1', [id]);
+
+    if (user.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
     const profileImagePath = req.file.filename; // Get the filename of the uploaded image
 
     // Update the user's profile image in the database
@@ -59,6 +65,12 @@ router.put('/update_profile_picture/:id', upload.single('profilePicture'), async
   try {
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    const user = await pool.query('SELECT profileimage FROM users WHERE userid = $1', [id]);
+
+    if (user.rows.length === 0) {
+      return res.status(404).json({ error: 'User not found' });
     }
 
     const profileImagePath = req.file.filename;
@@ -105,15 +117,13 @@ router.get('/profile_picture/:id', async (req, res) => {
     }
 
     // Send the profile image URL
-    const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${profileImage}`;
+    const imageUrl = `${req.protocol}://${req.get('host')}/documents/ProfileImages/${profileImage}`;
     res.json({ imageUrl });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
  
-// Serve static files from the uploads directory
-router.use('/uploads', express.static(uploadsDir));
 
 // GET users listing
 router.get('/get_users', async (req, res) => {

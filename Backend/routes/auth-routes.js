@@ -15,6 +15,7 @@ router.post('/sign_up', async (req, res) => {
           name, 
           email, 
           password, 
+          studentmatr,
           phone, 
           country, 
           town, 
@@ -25,12 +26,13 @@ router.post('/sign_up', async (req, res) => {
           departmentid, 
           registrationdate, 
           isactive  -- Added isactive to the INSERT statement
-        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)  -- Added $13 for isactive
-        RETURNING userid, name, email, phone, country, town, street, role, subscriptionstatus, level, departmentid, registrationdate, isactive`, // Added isactive to RETURNING
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)  -- Added $13 for isactive
+        RETURNING userid, name, email, studentmatr, phone, country, town, street, role, subscriptionstatus, level, departmentid, registrationdate, isactive`, // Added isactive to RETURNING
       [
         req.body.name,             // $1
         req.body.email,            // $2
-        hashedPassword,            // $3
+        hashedPassword,
+        req.body.studentmatr,             // $3
         req.body.phone,            // $4
         req.body.country,          // $5
         req.body.town,             // $6
@@ -48,6 +50,7 @@ router.post('/sign_up', async (req, res) => {
       userid: newUser.rows[0].userid, 
       name: newUser.rows[0].name, 
       email: newUser.rows[0].email, 
+      studentmatr: newUser.rows[0].studentmatr, 
       phone: newUser.rows[0].phone, 
       country: newUser.rows[0].country, 
       town: newUser.rows[0].town, 

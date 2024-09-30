@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 // Check if the NewsFeedImages directory exists, if not, create it
-const newsFeedImagesDir = path.join(__dirname, 'NewsFeedImages');
+const newsFeedImagesDir = path.join(__dirname, '..', 'documents', 'NewsFeedImages');
 
 if (!fs.existsSync(newsFeedImagesDir)) {
   fs.mkdirSync(newsFeedImagesDir);
@@ -57,7 +57,7 @@ router.get('/get_all_newsfeed', async (req, res) => {
         return res.status(404).json({ message: 'No news feeds found' });
       }
   
-      const baseUrl = `${req.protocol}://${req.get('host')}/NewsFeedImages`;
+      const baseUrl = `${req.protocol}://${req.get('host')}/documents/NewsFeedImages`;
   
       // Construct full URLs for the images for each news feed
       const newsFeeds = result.rows.map(feed => ({
@@ -90,7 +90,7 @@ router.get('/newsfeed/:id', async (req, res) => {
       }
   
       const feed = result.rows[0];
-      const baseUrl = `${req.protocol}://${req.get('host')}/NewsFeedImages`;
+      const baseUrl = `${req.protocol}://${req.get('host')}/documents/NewsFeedImages`;
   
       // Construct full URLs for the images
       const newsFeed = {

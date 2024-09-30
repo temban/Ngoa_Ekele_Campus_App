@@ -10,8 +10,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Setup storage for PDF files
-const pdfUploadsDir = path.join(__dirname, 'CourseNotes');
-
+const pdfUploadsDir = path.join(__dirname,'..', 'documents', 'CourseNotes');
+ 
 // Check if the uploads directory exists, if not, create it
 if (!fs.existsSync(pdfUploadsDir)) {
   fs.mkdirSync(pdfUploadsDir);
@@ -29,7 +29,7 @@ const pdfStorage = multer.diskStorage({
 const upload = multer({ storage: pdfStorage });
 
 const router = express.Router();
-
+ 
 // Route to create a new course note with PDF upload
 router.post('/cerate_course_notes', upload.single('pdf'), async (req, res) => {
   const { courseId, title } = req.body;
@@ -60,7 +60,7 @@ router.get('/get_all_course_notes', async (req, res) => {
       return res.status(404).json({ message: 'No course notes found' });
     }
 
-    const baseUrl = `${req.protocol}://${req.get('host')}/CourseNotes`;
+    const baseUrl = `${req.protocol}://${req.get('host')}/documents/CourseNotes`;
     const courseNotes = result.rows.map(note => ({
       noteid: note.noteid,
       courseid: note.courseid,
@@ -86,7 +86,7 @@ router.get('/course_note/:id', async (req, res) => {
     }
 
     const note = result.rows[0];
-    const baseUrl = `${req.protocol}://${req.get('host')}/CourseNotes`;
+    const baseUrl = `${req.protocol}://${req.get('host')}/documents/CourseNotes`;
     const courseNote = {
       noteid: note.noteid,
       courseid: note.courseid,
