@@ -24,9 +24,6 @@ o	Manage student subscriptions.
 •	Searches for their name in the result list.
 •	Accesses campus news feeds.
 •	Accesses course notes (if they are subscribed).
-![IRjuQrisxE](https://github.com/user-attachments/assets/ffc6b58a-4399-4d8c-9dc9-ca665ba9f4a9)
-![chrome_1DNtsFwW9N](https://github.com/user-attachments/assets/9d5bca5b-2d20-4eb0-a99d-147d12f57ea3)
-
                                                                                         
 Key Relations:
 1.	User to Department: A user (admin or student) is linked to a department. Students select their department.
@@ -34,3 +31,9 @@ Key Relations:
 3.	Level to Course: Each level has multiple courses (e.g., Geo 111, Geo 112).
 4.	Course to Result: For each course, results (either CC or SN) can be uploaded and retrieved.
 5.	Result to ExamType: Results are linked to an exam type (either Continuous Assessment - CC or Session Normale - SN).
+
+
+
+
+![IRjuQrisxE](https://github.com/user-attachments/assets/ffc6b58a-4399-4d8c-9dc9-ca665ba9f4a9)
+![chrome_1DNtsFwW9N](https://github.com/user-attachments/assets/9d5bca5b-2d20-4eb0-a99d-147d12f57ea3)
